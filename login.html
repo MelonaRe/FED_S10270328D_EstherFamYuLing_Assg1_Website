@@ -8,23 +8,32 @@
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
   <link href="form.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-  <!-- Login Page -->
-  <header>
+  <!-- Main container for the login page -->
+  <div class="login-container">
     <h1>Welcome Back to Senior Next</h1>
-  </header>
-</head>
-<body>
-  <div class="signup-container">
-    <h1>Login</h1>
+    <!-- Login form -->
     <form id="login-form">
-      <input type="email" id="login-email" placeholder="Enter Email" required />
-      <input type="password" id="login-password" placeholder="Enter Password" required />
+      <!-- Email input field -->
+      <input 
+        type="email" 
+        id="login-email" 
+        placeholder="Enter Email" 
+        required 
+        aria-label="Email Address" />
+      <!-- Password input field -->
+      <input 
+        type="password" 
+        id="login-password" 
+        placeholder="Enter Password" 
+        required 
+        aria-label="Password" />
+      <!-- Login button -->
       <button type="submit">Login</button>
     </form>
+    <!-- Error message displayed on invalid login -->
     <p id="error-message" style="color: red; margin-top: 10px; display: none;">Invalid email or password!</p>
   </div>
-
+  <!-- External JavaScript file -->
   <script src="javascript.js"></script>
 </body>
 </html>

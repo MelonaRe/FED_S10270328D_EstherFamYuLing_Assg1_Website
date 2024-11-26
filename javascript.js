@@ -6,7 +6,7 @@ const steps = [
     { id: 4, question: "How old are you?", inputType: "number", placeholder: "Age", key: "age" },
     { id: 5, question: "What's your gender?", inputType: "select", options: ["Female", "Male", "Non-Binary"], key: "gender" },
     { id: 6, question: "Who are you looking for?", inputType: "select", options: ["Female", "Male", "Non-Binary"], key: "looking_for" },
-    { id: 7, question: "What's your ethnicity?", inputType: "text", placeholder: "Ethnicity", key: "ethnicity" },
+    { id: 7, question: "What 's your ethnicity?", inputType: "text", placeholder: "Ethnicity", key: "ethnicity" },
     { id: 8, question: "Show us your smile!", inputType: "file", placeholder: "Upload Picture", key: "profile_picture" },
     { id: 9, question: "Verify your ID", inputType: "file", placeholder: "Upload ID", key: "id_verification" },
     { id: 10, question: "About You (Optional)", inputType: "text", placeholder: "Tell us more...", key: "about" }
