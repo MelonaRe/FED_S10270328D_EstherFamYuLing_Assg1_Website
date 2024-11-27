@@ -1,47 +1,37 @@
-// Descriptions for steps
-const stepDescriptions = [
-  "This helps us to tailor your experiences with Senior Next.",
-  "Welcome to Senior Next! An innovative platform to help you socialise.",
-  "Your date of birth helps us to tailor your experiences.",
-  "We want to show you the right people.",
-  "To see the right people, tell us who you're into.",
-  "Let's get started in helping you find your perfect match!",
-  "Something interesting about yourself!",
-  "Add a charming photo of yourself. A smile speaks volumes!",
-  "A little verification, just to ensure that Senior Next is for you!",
-  "A little verification, just to ensure that Senior Next is for you!"
-];
-
-// Update descriptions dynamically
-function updateStepDescription() {
-  document.getElementById("step-description").textContent = stepDescriptions[currentStep];
-}
-
-// Show image preview when file is uploaded
-document.getElementById("profile-picture").addEventListener("change", (event) => {
-  const file = event.target.files[0];
-  const preview = document.getElementById("image-preview");
-
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      preview.src = e.target.result;
-      preview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  } else {
-    preview.style.display = "none";
-  }
-});
-
-
 // Get references to form steps and navigation buttons
-const steps = document.querySelectorAll('.form-step');
+// Elements
 const nextBtn = document.getElementById('next-btn');
 const backBtn = document.getElementById('back-btn');
 const skipBtn = document.getElementById('skip-btn');
 const stepIndicator = document.getElementById('step-indicator');
-let currentStep = 0; // Track the current step index
+const ageInput = document.getElementById('age');
+const emailInput = document.getElementById('email');
+const idUpload = document.getElementById('id-upload');
+const idPreview = document.getElementById('id-preview');
+const profilePicture = document.getElementById('profile-picture');
+const imagePreview = document.getElementById('image-preview');
+
+// Show image preview when a file is uploaded
+profilePicture.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.src = e.target.result;
+      imagePreview.style.display = "block";
+      clearIdBtn.style.display = "block"; // Show clear button
+    };
+    reader.readAsDataURL(file);
+  } else {
+    imagePreview.style.display = "none";
+    clearIdBtn.style.display = "none";
+  }
+});
+
+// Step Tracker
+let currentStep = 0;
+const steps = document.querySelectorAll('.form-step');
 
 // Initialise the form (hide all steps except the first one)
 function initialiseForm() {
@@ -67,32 +57,33 @@ function updateNavigationButtons() {
     skipBtn.style.display = 'none';
   }
 
-  // Enable or disable the Back button
-  if (currentStep === 0) {
-    backBtn.disab
-    led = false;
-    backBtn.innerHTML = '<a href="landing.html" style="color: inherit; text-decoration: none;">Back</a>';
-  } else {
-    backBtn.disabled = currentStep === 0;
-  }
-
   // Update step indicator (e.g., "Step 1 of 10")
   stepIndicator.textContent = `Step ${currentStep + 1} of ${steps.length}`;
 }
 
 // Handle Next button click (move to the next step)
 nextBtn.addEventListener('click', () => {
-  if (currentStep < steps.length - 1 && validateStep(currentStep)) {
+  if (validateStep(currentStep)) {
+    // Check if we're on the last step (Step 10)
+    if (currentStep === steps.length - 1) {
+      window.location.href = "index.html"; // Redirect to index.page when Step 10 is reached
+    } else {
+      // Otherwise, move to the next step
       currentStep++;
-    initialiseForm();
+      initialiseForm(); // Update the form to display the next step
+    }
   }
 });
 
 // Handle Back button click (move to the previous step)
 backBtn.addEventListener('click', () => {
-  if (currentStep > 0) {
-    currentStep--;
-    initialiseForm();
+  if (currentStep === 0) {
+    window.location.href = "landing.html"; // Redirect to "landing.html" when the first step is reached
+  } else {
+    if (validateStep(currentStep)) {
+      currentStep--; // Move to the previous step
+      initialiseForm(); // Update the form to display the previous step
+    }
   }
 });
 
@@ -102,14 +93,42 @@ skipBtn.addEventListener('click', () => {
   initialiseForm();
 });
 
+// Form Validation
+function validateForm() {
+  const emailInput = document.getElementById('email');
+  const emailValid = validateEmail(emailInput.value); // Use the validateEmail function
+  const ageValid = parseInt(ageInput.value) >= 40;
+
+  if (emailValid && ageValid) {
+    nextBtn.disabled = false;
+  } else {
+    nextBtn.disabled = true;
+  }
+}
+
+// Function to validate email format (using regex)
+function validateEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/; // Regular expression for Gmail email validation
+  return emailRegex.test(email); // Returns true if the email matches the pattern
+}
+
+// Form Validation
+function validateForm() {
+  const emailInput = document.getElementById('email');
+  const emailValid = emailInput.value.includes('@gmail.com'); // Example for email format
+  const ageValid = parseInt(ageInput.value) >= 40;
+
+  if (emailValid && ageValid) {
+    nextBtn.disabled = false;
+  } else {
+    nextBtn.disabled = true;
+  }
+}
+
 // Function to validate if required fields are completed
 function validateStep(stepIndex) {
-  const errorMessageContainer = document.getElementById('signup-error-message');
+  const errorMessageContainer = document.getElementById('error-message');
   
-  // Clear any previous error message
-  errorMessageContainer.textContent = '';
-  errorMessageContainer.style.display = 'none';
-
   // For steps 1 to 6 and step 10, ensure required fields are filled out
   if (stepIndex <= 6 || stepIndex === 10) {
     const requiredFields = steps[stepIndex].querySelectorAll('[required]');
@@ -121,6 +140,27 @@ function validateStep(stepIndex) {
       }
     }
   }
+  
+  // Validate email (step 2)
+  if (stepIndex === 1) {
+    if (!validateEmail(emailInput.value)) {
+      errorMessageContainer.textContent = "Please enter a valid Gmail address.";
+      errorMessageContainer.style.display = 'block'; // Show the error message
+      return false;
+    }
+  }
+  
+  // Validate age (step 3)
+  if (stepIndex === 3) {
+    if (ageInput.value < 40) {
+      errorMessageContainer.textContent = "Age must be 40 or older.";
+      errorMessageContainer.style.display = 'block'; // Show the error message
+      return false;
+    }
+  }
+
+  errorMessageContainer.textContent = ""; // Clear error if all validations pass
+  errorMessageContainer.style.display = 'none'; // Hide error message
   return true;
 }
 
@@ -156,4 +196,3 @@ document.getElementById('look-non-binary-btn').addEventListener('click', handleG
 
 // Initialiseation
 initialiseForm();
-updateStepDescription();
