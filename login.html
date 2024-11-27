@@ -6,25 +6,32 @@
   <meta name="description" content="Senior Next - Log in to your account.">
   <title>Senior Next - Login</title>
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-  <link href="form.css" rel="stylesheet" type="text/css" />
+  <link href="form.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Login Page -->
-  <header>
-    <h1>Welcome Back to Senior Next</h1>
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <h3>Senior Next 🤍</h3>
   </header>
-</head>
-<body>
-  <div class="signup-container">
-    <h1>Login</h1>
-    <form id="login-form">
-      <input type="email" id="login-email" placeholder="Enter Email" required />
-      <input type="password" id="login-password" placeholder="Enter Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <p id="error-message" style="color: red; margin-top: 10px; display: none;">Invalid email or password!</p>
-  </div>
 
-  <script src="javascript.js"></script>
+  <!-- Login Container -->
+  <div class="login-container">
+    <h2>Welcome Back to Senior Next</h2>
+    <p class="login-intro">A warm welcome back! We hope your day is lovely.</p>
+    <!-- Login Form -->
+    <form id="login-form">
+      <label for="login-email">Email Address:</label>
+      <input type="email" id="login-email" placeholder="Enter Email" required>
+      
+      <label for="login-password">Password:</label>
+      <input type="password" id="login-password" placeholder="Enter Password" required>
+      <!-- Submit Button -->
+      <button type="submit">Login 🔒</button>
+    </form>
+
+    <!-- Error Message -->
+    <p id="error-message" style="display: none; color: red;">Invalid email or password!</p>
+  </div>
+  <script src="form.js"></script>
 </body>
 </html>
