@@ -4,6 +4,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    background-color: #EEEDEC;
   }
   
   /* Navbar */
@@ -52,7 +53,7 @@ body {
   
   /* Header */
   .landing-header {
-    background: linear-gradient(to right, #5cb85c, #007bff);
+    background: linear-gradient(to right, #ffe7cf, #EEEDEC);
     color: #fff;
     padding: 2rem;
     text-align: center;
@@ -119,4 +120,4 @@ body {
     text-align: center;
     font-size: 0.9rem;
   }
-  
+ /* background: linear-gradient(to bottom, #ffe7cf, #EEEDEC); /* Gradient goes down */

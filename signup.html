@@ -2,26 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Senior Next - Signing in.">
-  <title>Senior Next - Signup</title>
+  <meta name="description" content="Senior Next - Sign up to find your match.">
+  <title>Senior Next - Sign Up</title>
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-  <link href="form.css" rel="stylesheet" type="text/css" />
+  <link href="form.css" rel="stylesheet">
 </head>
+
 <body>
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <h3>Senior Next</h3>
+  </header>
 
   <div class="signup-container">
-    <h1>Sign Up</h1>
-    <div id="form-step" class="form-step">
-      <!-- Steps dynamically generated here -->
-    </div>
-    <div class="step-navigation">
-      <button id="prev-btn" disabled>Back</button>
-      <button id="next-btn">Next</button>
-    </div>
+    <h2>Sign Up</h2>
+    <p id="step-description"></p> <!-- Dynamic descriptions -->
+
+    <form id="signup-form">
+      <!-- Step Inputs -->
+      <div class="form-step" id="step-1">
+        <p>Your Intentions?</p>
+        <button type="button" class="option-btn" id="love-btn">Find Your Love ❤️</button>
+        <button type="button" class="option-btn" id="friendship-btn">Friendship 🤝</button>
+        <button type="button" class="option-btn" id="both-btn">👫 Both 👫</button>
+      </div>
+
+      <div class="form-step" id="step-2" style="display: none;">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+
+      <div class="form-step" id="step-3" style="display: none;">
+        <label for="name">What's your name?</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-step" id="step-4" style="display: none;">
+        <label for="dob">How old are you?</label>
+        <input type="number" id="age" required min="40">
+      </div>
+
+      <div class="form-step" id="step-5" style="display: none;">
+        <p>What's your gender?</p>
+        <button type="button" class="option-btn" id="male-btn">Male</button>
+        <button type="button" class="option-btn" id="female-btn">Female</button>
+        <button type="button" class="option-btn" id="non-binary-btn">Non-Binary</button>
+      </div>
+
+      <div class="form-step" id="step-6" style="display: none;">
+        <p>Who are you looking for?</p>
+        <button type="button" class="option-btn" id="look-male-btn">Male</button>
+        <button type="button" class="option-btn" id="look-female-btn">Female</button>
+        <button type="button" class="option-btn" id="look-non-binary-btn">Non-Binary</button>
+      </div>
+
+      <div class="form-step" id="step-7" style="display: none;">
+        <label for="age-range">What's your preferred age range?</label>
+        <input type="text" id="age-range" placeholder="e.g., 40-50" required pattern="^[4-9][0-9]-[4-9][0-9]$">
+      </div>
+
+      <div class="form-step" id="step-8" style="display: none;">
+        <label for="about">About You:</label>
+        <textarea id="about" placeholder="Eg. I like cats a lot!"></textarea>
+      </div>
+
+      <div class="form-step" id="step-9" style="display: none;">
+        <label for="profile-picture">Show us your smile!</label>
+        <input type="file" id="profile-picture">
+        <img id="image-preview" src="" alt="Preview" style="display: none; max-width: 100%; margin-top: 10px;" />
+      </div>
+
+      <div class="form-step" id="step-10" style="display: none;">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" placeholder="Enter your phone number" required>
+        <label for="id-proof">Upload Valid ID:</label>
+        <input type="file" id="id-proof" required>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="step-navigation">
+        <button type="button" id="back-btn">Back</button>
+        <button type="button" id="next-btn" style="display: none;">Next</button>
+        <button type="button" id="skip-btn" style="display: none;">I'll do it later</button>
+        <span id="step-indicator">Step 1 of 10</span>
+      </div>
+
+      <!-- Error Message -->
+      <p id="signup-error-message" style="display: none; color: red;">Please complete all fields!</p>
+    </form>
+    
   </div>
-  
-  <script src="javascript.js"></script>
+  <script src="form.js"></script>
 </body>
 </html>
-
