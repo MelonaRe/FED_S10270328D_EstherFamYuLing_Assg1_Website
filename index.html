@@ -4,79 +4,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Senior Next - Social hub for seniors to connect and engage">
-  <title>Senior Next - Home</title>
-  <!-- Normalize CSS -->
+  <title>Senior Next - Homepage</title>
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-  <link href="style.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Senior Next</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="games.html">Games</a></li>
-        <li><a href="match.html">Match</a></li>
-        <li><a href="chat.html">Chat</a></li>
-        <li><a href="logout.html">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="menu-icon">☰</div>
+    <h3>Senior Next</h3>
+    <input type="text" class="search-bar" placeholder="Search...">
+  </div>
 
   <!-- Main Content -->
-  <main class="homepage">
-    <!-- Status Update Section -->
-    <section class="status-update">
-      <h2>What's on your mind?</h2>
-      <textarea id="statusInput" placeholder="Share your thoughts..."></textarea>
-      <button id="postStatus">Post</button>
-    </section>
-
-    <!-- News and Updates Section -->
-    <section class="news-feed">
-      <h2>Updates</h2>
-      <div id="newsContainer">
-        <!-- Dynamic news content -->
-        <article class="news-item">
-          <h3>Senior Health Tips</h3>
-          <p>Stay active with daily exercises tailored for seniors. Read more...</p>
-        </article>
-        <article class="news-item">
-          <h3>Community Events</h3>
-          <p>Join us for a meetup this weekend at Marina Bay. Click here for details.</p>
-        </article>
+  <div class="main-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="profile-info">
+        <img src="Senior Images/profile-placeholder.png" alt="Profile Image" class="profile-pic">
+        <h4>John Doe</h4>
+        <p>Age: 65 | Location: New York</p>
       </div>
-    </section>
+    </div>
 
-    <!-- Match Profiles Section -->
-    <section class="carousel-section">
-      <h2>People You May Like</h2>
-      <div class="carousel" id="profileCarousel">
-        <!-- Carousel items will be dynamically generated -->
-        <div class="carousel-item">
-          <img src="assets/images/profile1.jpg" alt="Profile Picture">
-          <p>Jane, 65 - Nature Lover</p>
+    <!-- Content Area -->
+    <div class="content">
+      <!-- Status Feed -->
+      <section class="status-feed">
+        <h2>Status Feed</h2>
+        <div class="status-carousel">
+          <div class="status">
+            <img src="Senior Images/WhatsApp Image 2024-07-06 at 6.09.53 PM.jpeg" alt="Status">
+          </div>
+          <div class="status">
+            <img src="Senior Images/Chad Jr..png" alt="Status">
+          </div>
+          <!-- Add more statuses -->
         </div>
-        <div class="carousel-item">
-          <img src="assets/images/profile2.jpg" alt="Profile Picture">
-          <p>Harold, 72 - Adventurer</p>
-        </div>
+      </section>
+
+      <!-- Navigation Bar -->
+      <div class="nav-bar">
+        <a href="#">Home</a>
+        <a href="#">Match</a>
+        <a href="#">Chat</a>
+        <a href="#">Profile</a>
       </div>
-    </section>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2024 Senior Next. All rights reserved.</p>
-    <ul class="footer-links">
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms of Service</a></li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
-  </footer>
+      <!-- News & Updates -->
+      <section class="news-updates">
+        <h2>News & Updates</h2>
+        <div class="news-carousel">
+          <div class="news-item">
+            <h3>Event Alert 🎉</h3>
+            <p>Exciting new events coming soon!</p>
+          </div>
+          <div class="news-item">
+            <h3>Stay Active 🌟</h3>
+            <p>Tips for staying active and healthy!</p>
+          </div>
+          <!-- Add more news items -->
+        </div>
+      </section>
 
-  <script src="javascript.js"></script>
+      <!-- Share Your Thoughts -->
+      <section class="share-thoughts">
+        <h2>Share Your Thoughts</h2>
+        <textarea placeholder="What's on your mind?"></textarea>
+        <button>Post</button>
+      </section>
+
+      <!-- User Cards -->
+      <section class="user-cards-section">
+        <h2>Meet Seniors</h2>
+        <div class="user-cards">
+          <div class="user-card">
+            <img src="Senior Images/Esther Jones.png" alt="Senior">
+            <h4>Esther Jones</h4>
+            <p>Age: 72 | Location: London</p>
+          </div>
+          <div class="user-card">
+            <img src="Senior Images/Forwea Lone.png" alt="Senior">
+            <h4>Forwea Lone</h4>
+            <p>Age: 68 | Location: Sydney</p>
+          </div>
+          <!-- Add more cards -->
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
