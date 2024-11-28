@@ -22,14 +22,16 @@
     <form id="signup-form">
       <!-- Step Inputs -->
       <div class="form-step" id="step-1">
-        <p>Your Intentions?</p>
-        <p>This helps us tailor your experience.</p>
+        <p class="description-primary">Your Intentions?</p>
+        <p class="description-secondary">This helps us tailor your experience.</p>
         <button type="button" class="option-btn" id="love-btn">Find Your Love 💞</button>
         <button type="button" class="option-btn" id="friendship-btn">Friendship 🤝</button>
         <button type="button" class="option-btn" id="both-btn">👫 Both 👫</button>
       </div>
 
       <div class="form-step" id="step-2" style="display: none;">
+        <p class="description-primary">Your Intentions?</p>
+        <p class="description-secondary">This helps us tailor your experience.</p>
         <label for="email">Email:</label>
         <input type="email" id="email" placeholder="Enter your email" required>
         <label for="password">Password:</label>
@@ -38,27 +40,27 @@
 
       <div class="form-step" id="step-3" style="display: none;">
         <label for="name">What's your name?</label>
-        <p>Helps us show the right profiles.</p>
+        <p class="description-secondary">Welcome to Senior Next! An innovative platform to help you socialise.</p>
         <input type="text" id="name" placeholder="Enter your name" required>
       </div>
 
       <div class="form-step" id="step-4" style="display: none;">
         <label for="dob">How old are you?</label>
-        <p>Your date of birth helps us to tailor your experiences.</p>
+        <p class="description-secondary">Your date of birth helps us to tailor your experiences.</p>
         <input type="number" id="age" required min="40">
       </div>
 
       <div class="form-step" id="step-5" style="display: none;">
-        <p>What's your gender?</p>
-        <p>We want to show you the right people.</p>
+        <class="description-primary">What's your gender?</p>
+        <class="description-secondary">We want to show you the right people.</p>
         <button type="button" class="option-btn" id="male-btn">Male</button>
         <button type="button" class="option-btn" id="female-btn">Female</button>
         <button type="button" class="option-btn" id="non-binary-btn">Non-Binary</button>
       </div>
 
       <div class="form-step" id="step-6" style="display: none;">
-        <p>Who are you looking for?</p>
-        <p>To see the right people, tell us who you're into.</p>
+        <p class="description-primary">Who are you looking for?</p>
+        <p class="description-secondary">To see the right people, tell us who you're into.</p>
         <button type="button" class="option-btn" id="look-male-btn">Male</button>
         <button type="button" class="option-btn" id="look-female-btn">Female</button>
         <button type="button" class="option-btn" id="look-non-binary-btn">Non-Binary</button>
@@ -66,31 +68,31 @@
 
       <div class="form-step" id="step-7" style="display: none;">
         <label for="age-range">What's your preferred age range?</label>
-        <p>Let's get started in helping you find your perfect match!<p>
+        <p class="description-secondary">Let's get started in helping you find your perfect match!<p>
         <input type="text" id="age-range" placeholder="e.g., 40-50">
       </div>
 
       <div class="form-step" id="step-8" style="display: none;">
         <label for="about">About You:</label>
-        <p>Something interesting about yourself!</p>
+        <p class="description-secondary">Something interesting about yourself!</p>
         <textarea id="about" placeholder="Eg. I like cats a lot!"></textarea>
       </div>
 
       <div class="form-step" id="step-9" style="display: none;">
         <label for="profile-picture">Show us your smile!</label>
-        <p>Add a charming photo of yourself. A smile speaks volumes!</p>
-        <input type="file" id="profile-picture">
+        <p class="description-secondary">Add a charming photo of yourself. A smile speaks volumes!</p>
+        <input type="file" id="profile-picture" accept="image/*" required>
         <img id="image-preview" src="" alt="Preview" style="display: none; max-width: 100%; margin-top: 10px;" />
       </div>
-
+      
       <div class="form-step" id="step-10" style="display: none;">
-        <p>Verify your identity:</p>
-        <p>A little verification, just to ensure that Senior Next is for you!</p>
+        <p class="description-primary">Verify your identity:</p>
+        <p class="description-secondary">A little verification, just to ensure that Senior Next is for you!</p>
         <label for="phone">Phone Number:</label>
         <input type="text" id="phone" placeholder="Enter your phone number" required>
         <label for="id-proof">Upload Valid ID:</label>
-        <input type="file" id="id-proof" required>
-      </div>
+        <input type="file" id="id-proof" accept=".jpg, .jpeg, .png, .pdf" required>
+      </div>      
 
       <!-- Navigation Buttons -->
       <div class="step-navigation">
@@ -102,7 +104,9 @@
         <button type="button" id="skip-btn" style="display: none;">I'll do it later</button>
       </div>
 
-      <div id="step-indicator"></div>
+      <div id="step-indicator-container">
+        <div id="step-indicator"></div>
+      </div>
 
       <!-- Error Message -->
       <div id="error-message" style="color: red; display: none;"></div>

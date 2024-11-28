@@ -1,0 +1,96 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #EEEDEC;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #c96d6d;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50px;
+  left: 0;
+  height: 100%;
+}
+
+/* Content Area */
+.content {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+/* Status Feed */
+.status-feed {
+  margin-top: 80px;
+}
+
+.status-carousel {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.status {
+  margin-right: 10px;
+}
+
+.status img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* News Carousel */
+.news-carousel {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.news-item {
+  background-color: white;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* User Cards */
+.user-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.user-card {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

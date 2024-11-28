@@ -64,14 +64,18 @@ function updateNavigationButtons() {
 // Handle Next button click (move to the next step)
 nextBtn.addEventListener('click', () => {
   if (validateStep(currentStep)) {
-    // Check if we're on the last step (Step 10)
+    // Hide error message when the step is valid
+    document.getElementById('error-message').style.display = 'none';
+    
     if (currentStep === steps.length - 1) {
-      window.location.href = "index.html"; // Redirect to index.page when Step 10 is reached
+      window.location.href = "index.html"; // Redirect to index.page on the last step
     } else {
-      // Otherwise, move to the next step
-      currentStep++;
+      currentStep++; // Move to the next step
       initialiseForm(); // Update the form to display the next step
     }
+  } else {
+    document.getElementById('error-message').textContent = "Please complete the required fields.";
+    document.getElementById('error-message').style.display = 'block';
   }
 });
 
@@ -80,10 +84,8 @@ backBtn.addEventListener('click', () => {
   if (currentStep === 0) {
     window.location.href = "landing.html"; // Redirect to "landing.html" when the first step is reached
   } else {
-    if (validateStep(currentStep)) {
-      currentStep--; // Move to the previous step
-      initialiseForm(); // Update the form to display the previous step
-    }
+    currentStep--; // Move to the previous step without validating
+    initialiseForm(); // Update the form to display the previous step
   }
 });
 
@@ -127,41 +129,17 @@ function validateForm() {
 
 // Function to validate if required fields are completed
 function validateStep(stepIndex) {
-  const errorMessageContainer = document.getElementById('error-message');
-  
-  // For steps 1 to 6 and step 10, ensure required fields are filled out
-  if (stepIndex <= 6 || stepIndex === 10) {
-    const requiredFields = steps[stepIndex].querySelectorAll('[required]');
-    for (const field of requiredFields) {
-      if (!field.value.trim()) {
-        errorMessageContainer.textContent = 'Please fill in the fields.';
-        errorMessageContainer.style.display = 'block'; // Show the error message
-        return false;
-      }
-    }
-  }
-  
-  // Validate email (step 2)
   if (stepIndex === 1) {
-    if (!validateEmail(emailInput.value)) {
-      errorMessageContainer.textContent = "Please enter a valid Gmail address.";
-      errorMessageContainer.style.display = 'block'; // Show the error message
-      return false;
-    }
+    // Validate email and password for Step 2
+    return emailInput.value.includes('@') && password.value.trim() !== '';
+  } else if (stepIndex === 3) {
+    // Validate age input for Step 4
+    return parseInt(ageInput.value) >= 40;
+  } else if (stepIndex === 10) {
+    // Validate phone number and ID proof for Step 10
+    return phone.value.trim() !== '' && idProof.files.length > 0;
   }
-  
-  // Validate age (step 3)
-  if (stepIndex === 3) {
-    if (ageInput.value < 40) {
-      errorMessageContainer.textContent = "Age must be 40 or older.";
-      errorMessageContainer.style.display = 'block'; // Show the error message
-      return false;
-    }
-  }
-
-  errorMessageContainer.textContent = ""; // Clear error if all validations pass
-  errorMessageContainer.style.display = 'none'; // Hide error message
-  return true;
+  return true; // Default: no validation for other steps
 }
 
 // Handle "Find Your Love", "Friendship", and "Both" buttons (Intentions Step)

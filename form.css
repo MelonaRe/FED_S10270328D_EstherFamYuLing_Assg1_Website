@@ -15,48 +15,50 @@ body {
 .top-bar {
   background-color: #c96d6d;
   color: white;
-  padding: 5px;
+  padding: 0.3125rem; /* 5px / 16px = 0.3125rem */
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* 1.5rem = 1.5 * 16px = 24px */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;  /* Full width */
-  z-index: 10;  /* Ensure it's on top of other content */
-  box-shadow: 2px 2px 5px rgba(49, 36, 36, 0.2);
+  width: 100%; /* Full width */
+  z-index: 10; /* Ensure it's on top of other content */
+  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2); /* 2px / 16px = 0.125rem */
 }
 
 .top-bar h3 {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.219); /* Adding text shadow */
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.219); /* Adding text shadow */
 }
 
 /* Container */
 .signup-container, .login-container {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 0.625rem; /* 10px / 16px = 0.625rem */
   padding: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 90%;  /* Default width for mobile */
-  max-width: 500px;  /* Max width for larger screens */
-  margin: 120px auto 0; /* Push content below the fixed top bar dynamically (80px + top bar height) */
+  box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.2); /* 4px / 16px = 0.25em */
+  width: 90%; /* Default width for mobile */
+  max-width: 31.25em; /* Max width for larger screens */
+  margin: 9.375em auto 0; /* Push content below the fixed top bar dynamically (80px + top bar height) */
   /* Adjusted margin to avoid overlap with fixed top bar */
 }
 
 .signup-container h2, .login-container h2 {
-  font-size: 1.7rem;
+  font-size: 1.0625em;
   color: #383535;
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .step-navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  margin-bottom: 1em; /* 16px / 16px = 1em */
 }
 
 #step-indicator {
+  margin: 1.25em; /* Adds space between form content and indicator */
+  font-size: 0.9rem;
   font-weight: bold;
   color: #322d2dcc;
   text-align: right; /* Align the step indicator to the right */
@@ -64,19 +66,29 @@ body {
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.3125em; /* 5px / 16px = 0.3125em */
+  font-size: 1.375em;
   color: #322d2d;
+}
+
+.description-primary {
+  font-weight: bold; /* Bold text */
+  margin-bottom: 0.625em; /* 10px / 16px = 0.625em */
+}
+
+.description-secondary {
+  font-style: italic; /* Italic for contrast */
+  margin-bottom: 1.25em; /* 20px / 16px = 1.25em */
 }
 
 input, select, textarea {
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.5em; /* 8px / 16px = 0.5em */
   margin-bottom: 1rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 0.3125em; /* 5px / 16px = 0.3125em */
   box-sizing: border-box;
-  font-size: 1.1rem;
+  font-size: 1.375em; /* 1.1rem = 1.1 * 16px = 17.6px (rounded to 1.375em) */
 }
 
 button {
@@ -84,11 +96,11 @@ button {
   color: white;
   border: none;
   padding: 0.8rem 1.2rem;
-  border-radius: 5px;
+  border-radius: 0.3125em; /* 5px / 16px = 0.3125em */
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 2px 2px 5px rgba(49, 36, 36, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s, all ease;
+  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2);
 }
 
 button:disabled {
@@ -99,20 +111,20 @@ button:disabled {
 button:hover:not(:disabled) {
   background-color: #b36262;
   transform: scale(1.05);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
 }
 
 /* Option Buttons */
 .option-btn {
   display: block;
   width: 100%;
-  margin: 15px 0;
+  margin: 0.9375em 0; /* 15px / 16px = 0.9375em */
   background: linear-gradient(to bottom, #ffffff, #f0eeee);  /* Soft white gradient */
-  box-shadow: 2px 2px 8px rgba(49, 36, 36, 0.228);
+  box-shadow: 0.125rem 0.125rem 0.5rem rgba(49, 36, 36, 0.228);
   font-size: 1.5rem;
-  color: #383535d7;  /* text colour  */
-  font-weight: 600;  /* Semi-bold text */
-  border-radius: 5px;  /* Optional: round corners for button */
+  color: #383535d7; /* text colour  */
+  font-weight: 600; /* Semi-bold text */
+  border-radius: 0.3125em; /* Round corners for button */
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth animation */
 }
 
@@ -120,21 +132,28 @@ button:hover:not(:disabled) {
 .option-btn:hover {
   background: #c96d6d;  /* Hover background color same as other buttons */
   color: white;  /* Text color changes to white on hover */
-  transform: scale(1.05);  /* Slight scaling effect */
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);  /* Enhanced shadow on hover */
 }
 
 .option-btn:active {
   transform: scale(0.98);  /* Slightly scale down when active (clicked) */
 }
 
-#error-message, #signup-error-message {
-  color: rgb(190, 40, 40);
-  font-size: 14px;
-  margin-top: 10px;
+#next-btn {
+  width: 30%; /* Increased width for better visibility */
 }
 
+#back-btn {
+  background-color: #5a4949d7; /* Greyer shade */
+  border: none;
+}
+
+#back-btn:hover {
+  background-color: rgba(128, 103, 103, 0.856); /* Slightly darker grey for hover */
+}
+
+/* Skip Button */
 #skip-btn {
+  margin: 0.5em;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -143,78 +162,118 @@ button:hover:not(:disabled) {
   font-weight: 600;  /* Semi-bold text */
 }
 
+#skip-btn:hover {
+  background-color: #c96d6d;
+  color: white;
+  transform: scale(1.05);
+}
+
+#error-message, #signup-error-message {
+  color: rgb(190, 40, 40);
+  font-size: 0.875rem;
+  margin-top: -1.25rem; /* -20px / 16px = -1.25rem */
+}
+
+/* Step 9 (Profile Picture Upload) */
+#step-9 {
+  display: flex;
+  flex-direction: column;
+}
+
+#image-preview {
+  max-width: 100%;
+  margin-top: 0.625em;
+  display: none;
+}
+
+/* Step 10 (ID Validation) */
+#step-10 {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-10-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-10-box img {
+  width: 3.125rem;
+  margin-bottom: 0.625em;
+}
+
 /* Media Queries for Responsiveness */
 
 /* For mobile devices (less than 600px) */
 @media (max-width: 600px) {
   .top-bar {
-    font-size: 1.2rem;
-    padding: 10px;
+    font-size: 1.2rem; /* 19.2px */
+    padding: 0.625rem; /* 10px */
   }
 
   .signup-container, .login-container {
     width: 95%; /* Use more width on smaller screens */
-    margin-top: 90px; /* Adjusted margin for mobile */
+    margin-top: 5.625rem; /* Adjusted margin for mobile */
     padding: 3rem;
   }
 
   .signup-container h1 {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* 24px */
   }
 
   input, select, textarea {
-    font-size: 1rem;
-    padding: 0.7rem;
+    font-size: 1rem; /* 16px */
+    padding: 0.7rem; /* 11.2px */
   }
 
   button {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* 14.4px */
     padding: 0.7rem 1rem;
   }
 }
 
-/* For tablets (600px to 900px) */
+  /* For tablets (600px to 900px) */
 @media (max-width: 900px) and (min-width: 600px) {
   .top-bar {
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* 22.4px */
   }
 
   .signup-container, .login-container {
     width: 80%; /* Use 80% width on tablets */
-    margin-top: 90px; /* Adjust margin */
+    margin-top: 5.625rem; /* Adjust margin */
     padding: 1.8rem;
   }
 
   .signup-container h1 {
-    font-size: 1.8rem;
+    font-size: 1.8rem; /* 28.8px */
   }
 
   input, select, textarea {
-    font-size: 1.1rem;
+    font-size: 1.1rem; /* 17.6px */
   }
 
   button {
-    font-size: 1rem;
+    font-size: 1rem; /* 16px */
   }
 }
 
-/* For larger screens (900px and up) */
+  /* For larger screens (900px and up) */
 @media (min-width: 900px) {
   .signup-container, .login-container {
     width: 60%; /* 60% width for larger screens */
-    margin-top: 100px; /* Ensure there's space below the top bar */
+    margin-top: 6.25rem; /* Ensure there's space below the top bar */
     padding: 2rem;
   }
 
   .signup-container h1 {
-    font-size: 2rem;
+    font-size: 2rem; /* 32px */
   }
 
   input, select, textarea {
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* 19.2px */
   }
 
   button {
-    font-size: 1rem;
+    font-size: 1rem; /* 16px */
   }
 }
