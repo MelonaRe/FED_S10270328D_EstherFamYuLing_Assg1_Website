@@ -1,28 +1,32 @@
 // Get references to form steps and navigation buttons
 // Elements
-const nextBtn = document.getElementById('next-btn');
-const backBtn = document.getElementById('back-btn');
-const skipBtn = document.getElementById('skip-btn');
-const stepIndicator = document.getElementById('step-indicator');
-const emailInput = document.getElementById('email');
-const ageInput = document.getElementById('age');
-const profilePicture = document.getElementById('profile-picture');
-const imagePreview = document.getElementById('image-preview');
-const idProofInput = document.getElementById('id-proof');
-const idPreview = document.getElementById('id-preview');
-const nameInput = document.getElementById('name');
-const passwordInput = document.getElementById('password');
-const errorMessage = document.getElementById('error-message');
+// Access the HTML elements for the form steps, navigation buttons, and input fields
+const nextBtn = document.getElementById('next-btn'); // Next button to move forward in the form
+const backBtn = document.getElementById('back-btn'); // Back button to go to the previous step
+const skipBtn = document.getElementById('skip-btn'); // Skip button to skip steps 7-9
+const stepIndicator = document.getElementById('step-indicator'); // Displays current step number
+const emailInput = document.getElementById('email'); // Email input field
+const ageInput = document.getElementById('age'); // Age input field
+const profilePicture = document.getElementById('profile-picture'); // Profile picture input field
+const imagePreview = document.getElementById('image-preview'); // Profile picture preview
+const idProofInput = document.getElementById('id-proof'); // ID proof input field
+const idPreview = document.getElementById('id-preview'); // ID proof preview
+const nameInput = document.getElementById('name'); // Name input field
+const passwordInput = document.getElementById('password'); // Password input field
+const errorMessage = document.getElementById('error-message'); // Error message element for validation feedback
+
 // Step Tracker
-const steps = document.querySelectorAll('.form-step');
+const steps = document.querySelectorAll('.form-step'); // Get all form steps to count
 let currentStep = 0;
 
 // Add event listeners for the "Find Your Love" buttons
+// These buttons are used to select the user's intention for using the platform
 document.getElementById('love-btn').addEventListener('click', handleIntentionsClick);
 document.getElementById('friendship-btn').addEventListener('click', handleIntentionsClick);
 document.getElementById('both-btn').addEventListener('click', handleIntentionsClick);
 
 // Add event listeners for the "What's your gender?" and "Who are you looking for?" steps
+// These are gender selection buttons for both the user & the person they are looking for
 document.getElementById('male-btn').addEventListener('click', handleGenderSelection);
 document.getElementById('female-btn').addEventListener('click', handleGenderSelection);
 document.getElementById('non-binary-btn').addEventListener('click', handleGenderSelection);
@@ -33,25 +37,26 @@ document.getElementById('look-non-binary-btn').addEventListener('click', handleG
 
 // Initialise the form (hide all steps except the first one)
 function initialiseForm() {
+  // Loop through all steps and display only the current step
   steps.forEach((step, index) => {
-    step.style.display = index === currentStep ? 'block' : 'none';
+    step.style.display = index === currentStep ? 'block' : 'none'; // Show the current step, hide others
   });
-  updateNavigationButtons();
+  updateNavigationButtons(); // Update navigation buttons (next, back, skip) based on the current step
 }
 
 // Update navigation buttons based on the current step
 function updateNavigationButtons() {
-  // Handle "Next" visibility
+  // Handle "Next" button visibility - only visible for some steps
   nextBtn.style.display = (currentStep === 0 || currentStep === 4 || currentStep === 5) ? 'none' : 'inline-block';
 
-  // Show "Skip" only for steps 6-8
+  // Show "Skip" button only for steps 7-9 (skipping directly to step 10)
   skipBtn.style.display = (currentStep >= 6 && currentStep <= 8) ? 'inline-block' : 'none';
 
-  // Update step indicator
+  // Update the step indicator text (e.g., "Step 3 of 10")
   stepIndicator.textContent = `Step ${currentStep + 1} of ${steps.length}`;
 }
 
-// Handle Next button click (move to the next step)
+// Handle "Next" button click (move to the next step)
 nextBtn.addEventListener('click', () => {
   if (validateStep(currentStep)) {
     // Hide error message when the step is valid
@@ -64,8 +69,8 @@ nextBtn.addEventListener('click', () => {
       initialiseForm(); // Update the form to display the next step
     }
   } else {
-    errorMessage.textContent = "Please complete the required fields.";
-    errorMessage.style.display = 'block';
+    errorMessage.textContent = "Please complete the required fields."; // Show error if validation fails
+    errorMessage.style.display = 'block'; // Display the error message
   }
 });
 
@@ -88,16 +93,20 @@ skipBtn.addEventListener('click', () => {
 // Function to validate email format (using regex)
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.(com|net|org)$/;
-
-  return emailRegex.test(email);
+  //Start with one or more non-space and non-@ characters.
+  //Have an "@" symbol separating the username and domain.
+  //The domain can only end with .com, .net, or .org.
+  //No spaces or extra @ symbols are allowed anywhere in the email.
+  return emailRegex.test(email); //returns true if email matches the regex pattern
 }
 
 // Form Validation
 function validateForm() {
-  const emailValid = validateEmail(emailInput.value); // Validate email
-  const ageValid = parseInt(ageInput.value) >= 40; // Validate age
-  const passwordValid = passwordInput.value.trim() !== ''; // Validate password
-
+  const emailValid = validateEmail(emailInput.value); // Validate email format
+  const ageValid = parseInt(ageInput.value) >= 40; // Validate that age is 40 or above
+  const passwordValid = passwordInput.value.trim() !== ''; // Validate password (should not be empty)
+  
+  // Enable the "Next" button if all validations pass
   if (emailValid && ageValid && passwordValid) {
     nextBtn.disabled = false; // Enable Next button if validation passes
   } else {
@@ -105,10 +114,10 @@ function validateForm() {
   }
 }
 
-// Function to validate if required fields are completed
+// Function to validate if required fields are completed for each step
 function validateStep(stepIndex) {
   if (stepIndex === 1) {
-    // Step 1: Validate email (should not be empty and should be in proper .com format) and password
+    // Step 1: Validate email (should be in valid format) & password (should not be empty)
     const emailValid = validateEmail(emailInput.value.trim()); // Validating email format
     const passwordValid = passwordInput.value.trim() !== ""; // Password should not be empty
     return emailValid && passwordValid;
@@ -118,11 +127,11 @@ function validateStep(stepIndex) {
     return nameInput.value.trim() !== "";
   } 
   if (stepIndex === 3) {
-    // Validate age input for Step 4
+    // Step 4: Validate age (should be a number and >= 40)
     return ageInput.value.trim() !== "" && ageInput.value >= 40;
     } 
-  if (stepIndex === 10) {
-    // Validate 10
+  if (stepIndex === 9) {
+    // Step 10: Validate ID proof (file must be uploaded)
     return idProofInput.files.length > 0;
   }
   return true; // No validation needed for other steps
@@ -133,35 +142,36 @@ function handleIntentionsClick() {
   if (currentStep === 0) {
     currentStep = 1; // Move to the next step after selecting an intention
   }
-  initialiseForm();
+  initialiseForm(); // Update the form display
 }
 
 // Handle gender-related steps (move to next step when a button is clicked)
 function handleGenderSelection() {
   if (currentStep === 4 || currentStep === 5) {
-    currentStep++;
+    currentStep++; // Move to the next step after gender selection
   }
-  initialiseForm();
+  initialiseForm(); // Update the form display
 }
 
 // Complete the signup process and display user profile
 function completeSignUp() {
+  // Extract data from the form inputs to complete the sign-up
   const name = nameInput.value;
   const age = ageInput.value;
-  const profilePic = imagePreview.src;
+  const profilePic = imagePreview.src; // Get the profile picture source (preview image)
 }
 
 // Steps 9 & 10 file upload & preview
-// Handle file upload for profile picture and ID proof
+// Handle file upload (for profile picture and ID proof) and preview the uploaded file
 function handleFileUpload(event, previewElement) {
-  const file = event.target.files[0];
+  const file = event.target.files[0]; // Get the selected file
   if (file) {
-    const reader = new FileReader();
+    const reader = new FileReader(); // Create a FileReader instance to read the file
     reader.onload = (e) => {
-      previewElement.src = e.target.result;
-      previewElement.style.display = 'block'; // Show the preview
+      previewElement.src = e.target.result; // Set the preview image source to the uploaded file
+      previewElement.style.display = 'block'; // Show the preview element
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // Read the file as a data URL (for image files)
   } else {
     previewElement.style.display = 'none'; // Hide the preview if no file is selected
   }
@@ -169,13 +179,13 @@ function handleFileUpload(event, previewElement) {
 
 // Profile picture upload preview
 profilePicture.addEventListener("change", (event) => {
-  handleFileUpload(event, imagePreview); // Call without success/failure messages
+  handleFileUpload(event, imagePreview); // Call file upload handler for profile picture
 });
 
 // ID proof upload preview
 idProofInput.addEventListener("change", (event) => {
-  handleFileUpload(event, idPreview); // Call without success/failure messages
+  handleFileUpload(event, idPreview); // Call file upload handler for ID proof
 });
 
-// Initialisation
+// Initialisation: Call initialiseForm() to display the first step on page load
 initialiseForm();
