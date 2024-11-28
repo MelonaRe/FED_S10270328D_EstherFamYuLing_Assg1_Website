@@ -4,26 +4,30 @@ body {
   margin: 0;
   padding: 0;
   background-color: #EEEDEC;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  flex-direction: column;
+  display: flex; /* Flexbox layout to align content */
+  flex-direction: column; /* Stack content vertically */
+  min-height: 100vh; /* Ensure body spans full height of viewport */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Top Bar */
+/* The top bar is styled to stay at the top of the screen and can slide in/out */
 .top-bar {
   background-color: #c96d6d;
   color: white;
   padding: 0.3125rem; /* 5px / 16px = 0.3125rem */
-  text-align: center;
-  font-size: 1.5rem; /* 1.5rem = 1.5 * 16px = 24px */
-  position: fixed;
-  top: 0;
-  left: 0;
+  text-align: center; /* Centre-align text */
+  font-size: 1.5rem;
   width: 100%; /* Full width */
-  z-index: 10; /* Ensure it's on top of other content */
-  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2); /* 2px / 16px = 0.125rem */
+  box-shadow: 0 2px 8px rgba(49, 36, 36, 0.2);
+  position: sticky;
+  top: 0; /* starts at top */
+  z-index: 10; /* Ensures it stays at the top when scrolling */
+  transition: transform 0.3s ease-in-out; /* Smooth slide effect */
+}
+
+.top-bar.hidden {
+  transform: translateY(-100%); /* Slide up and hide when scrolled */
 }
 
 .top-bar h3 {
@@ -31,54 +35,65 @@ body {
 }
 
 /* Container */
+/* These styles apply to both the signup and login containers */
 .signup-container, .login-container {
   background: #fff;
-  border-radius: 0.625rem; /* 10px / 16px = 0.625rem */
+  border-radius: 0.625rem;
   padding: 2rem;
-  box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.2); /* 4px / 16px = 0.25em */
-  width: 90%; /* Default width for mobile */
-  max-width: 31.25em; /* Max width for larger screens */
-  margin: 9.375em auto 0; /* Push content below the fixed top bar dynamically (80px + top bar height) */
-  /* Adjusted margin to avoid overlap with fixed top bar */
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+  width: 80%; /* Adjust container width for larger screens */
+  max-width: 28rem; /* Prevent containers from being too wide */
+  margin: 3rem auto; /* Increase vertical spacing to reduce crowding */
 }
 
+/* headings */
 .signup-container h2, .login-container h2 {
-  font-size: 1.0625em;
+  font-size: 1.425em;
   color: #383535;
   text-align: left;
   margin-bottom: 1em;
 }
 
+/* Step Navigation */
 .step-navigation {
-  display: flex;
-  justify-content: space-between;
+  display: flex; /* Align items horizontally */
+  justify-content: space-between; /* Space between items */
   align-items: center;
   margin-bottom: 1em; /* 16px / 16px = 1em */
 }
 
+/* The top bar is styled to stay at the top of the screen and can slide in/out */
 #step-indicator {
   margin: 1.25em; /* Adds space between form content and indicator */
-  font-size: 0.9rem;
+  font-size: 0.9em;
   font-weight: bold;
   color: #322d2dcc;
   text-align: right; /* Align the step indicator to the right */
 }
 
+/* Form Inputs & Labels */
+/* Style inputs and textareas for consistency */
 label {
-  display: block;
-  margin-bottom: 0.3125em; /* 5px / 16px = 0.3125em */
-  font-size: 1.375em;
+  display: block; /* Ensure labels are on their own line */
+  margin-bottom: 0.625em; /* 10px / 16px = 0.625em */
+  font-size: 1.2em;
+  font-weight: bold; /* Bold text */
   color: #322d2d;
 }
 
 .description-primary {
   font-weight: bold; /* Bold text */
   margin-bottom: 0.625em; /* 10px / 16px = 0.625em */
+  font-size: 1.2em;
+  color: #322d2d;
 }
 
 .description-secondary {
+  font-weight: bold; /* Bold text */
   font-style: italic; /* Italic for contrast */
   margin-bottom: 1.25em; /* 20px / 16px = 1.25em */
+  font-size: 0.9em;
+  color: #322d2dcc;
 }
 
 input, select, textarea {
@@ -91,6 +106,23 @@ input, select, textarea {
   font-size: 1.375em; /* 1.1rem = 1.1 * 16px = 17.6px (rounded to 1.375em) */
 }
 
+/* Step 9 Image & ID Preview (Hidden by Default) */
+#image-preview, #id-preview {
+  max-width: 100%; /* Ensure it doesn’t overflow container */
+  margin-bottom: 0.625em;
+  display: none; /* Hide by default */
+}
+
+/* Step 10 (ID Validation) */
+.verification-box {
+  border: 1px solid #ddd;
+  border-radius: 0.3125em; /* 5px / 16px = 0.3125em */
+  padding: 0.8rem 1.2rem;
+  margin-top: 0.625em;
+  margin-bottom: 1.25em; /* 20px / 16px = 1.25em */
+  background-color: #f9f9f9b5;
+}
+
 button {
   background-color: #c96d6d;
   color: white;
@@ -98,14 +130,14 @@ button {
   padding: 0.8rem 1.2rem;
   border-radius: 0.3125em; /* 5px / 16px = 0.3125em */
   font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, all ease;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: transform 0.2s, box-shadow 0.2s ease; /* Smooth hover animation */
   box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2);
 }
 
 button:disabled {
   background-color: #ccc;
-  cursor: not-allowed;
+  cursor: not-allowed; /* Prevent interaction */
 }
 
 button:hover:not(:disabled) {
@@ -174,106 +206,62 @@ button:hover:not(:disabled) {
   margin-top: -1.25rem; /* -20px / 16px = -1.25rem */
 }
 
-/* Step 9 (Profile Picture Upload) */
-#step-9 {
-  display: flex;
-  flex-direction: column;
-}
-
-#image-preview {
-  max-width: 100%;
-  margin-top: 0.625em;
-  display: none;
-}
-
-/* Step 10 (ID Validation) */
-#step-10 {
-  display: flex;
-  flex-direction: column;
-}
-
-.step-10-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.step-10-box img {
-  width: 3.125rem;
-  margin-bottom: 0.625em;
-}
-
 /* Media Queries for Responsiveness */
 
-/* For mobile devices (less than 600px) */
-@media (max-width: 600px) {
-  .top-bar {
-    font-size: 1.2rem; /* 19.2px */
-    padding: 0.625rem; /* 10px */
-  }
-
+/* Large Screens (Default) */
+@media (min-width: 1024px) {
   .signup-container, .login-container {
-    width: 95%; /* Use more width on smaller screens */
-    margin-top: 5.625rem; /* Adjusted margin for mobile */
-    padding: 3rem;
+    width: 60%; /* Smaller width for desktops */
+    max-width: 25rem; /* Limit maximum size */
   }
 
-  .signup-container h1 {
-    font-size: 1.5rem; /* 24px */
-  }
-
-  input, select, textarea {
-    font-size: 1rem; /* 16px */
-    padding: 0.7rem; /* 11.2px */
-  }
-
-  button {
-    font-size: 0.9rem; /* 14.4px */
-    padding: 0.7rem 1rem;
+  .top-bar h3 {
+    font-size: 1.5rem;
   }
 }
 
-  /* For tablets (600px to 900px) */
-@media (max-width: 900px) and (min-width: 600px) {
-  .top-bar {
-    font-size: 1.4rem; /* 22.4px */
-  }
-
+/* Tablets (768px to 1023px) */
+@media (max-width: 1023px) {
   .signup-container, .login-container {
-    width: 80%; /* Use 80% width on tablets */
-    margin-top: 5.625rem; /* Adjust margin */
-    padding: 1.8rem;
+    width: 75%; /* Reduce width on tablets */
+    padding: 1.8rem; /* Slightly less padding */
   }
 
-  .signup-container h1 {
-    font-size: 1.8rem; /* 28.8px */
-  }
-
-  input, select, textarea {
-    font-size: 1.1rem; /* 17.6px */
-  }
-
-  button {
-    font-size: 1rem; /* 16px */
+  .top-bar h3 {
+    font-size: 1.3rem;
   }
 }
 
-  /* For larger screens (900px and up) */
-@media (min-width: 900px) {
+/* Mobiles (480px to 767px) */
+@media (max-width: 767px) {
   .signup-container, .login-container {
-    width: 60%; /* 60% width for larger screens */
-    margin-top: 6.25rem; /* Ensure there's space below the top bar */
-    padding: 2rem;
+    width: 85%; /* Adjust width for mobile devices */
+    padding: 1.5rem; /* Reduce padding for smaller screens */
   }
 
-  .signup-container h1 {
-    font-size: 2rem; /* 32px */
-  }
-
-  input, select, textarea {
-    font-size: 1.2rem; /* 19.2px */
+  .top-bar {
+    font-size: 1.2rem; /* Adjust text size */
   }
 
   button {
-    font-size: 1rem; /* 16px */
+    font-size: 0.9rem; /* Adjust button size */
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Small Mobiles (Below 480px) */
+@media (max-width: 480px) {
+  .signup-container, .login-container {
+    width: 90%; /* Almost full width for small screens */
+    padding: 1.2rem; /* Minimum padding for usability */
+  }
+
+  .top-bar h3 {
+    font-size: 1rem; /* Smallest size for the top bar text */
+  }
+
+  button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
   }
 }

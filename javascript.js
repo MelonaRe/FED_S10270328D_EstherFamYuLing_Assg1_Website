@@ -44,3 +44,49 @@ profiles.forEach(({ name, img }) => {
   card.addEventListener('click', () => alert(`Viewing ${name}'s Profile`));
   profileList.appendChild(card);
 });
+
+const chatInput = document.getElementById('chatInput');
+const sendMessage = document.getElementById('sendMessage');
+const chatBody = document.getElementById('chatBody');
+
+// Simulated bot responses
+const botResponses = [
+  "Hello! How can I help you today?",
+  "That's interesting! Tell me more.",
+  "I'm here to chat with you 😊.",
+  "What's on your mind?",
+  "Have a great day!"
+];
+
+// Add a message to the chat
+function addMessage(text, sender = 'sent') {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${sender}`;
+  messageDiv.textContent = text;
+  chatBody.appendChild(messageDiv);
+  chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the latest message
+}
+
+// Simulate bot response
+function botReply() {
+  const response = botResponses[Math.floor(Math.random() * botResponses.length)];
+  setTimeout(() => addMessage(response, 'received'), 1000);
+}
+
+// Send button functionality
+sendMessage.addEventListener('click', () => {
+  const messageText = chatInput.value.trim();
+  if (messageText) {
+    addMessage(messageText, 'sent');
+    chatInput.value = '';
+    botReply();
+  }
+});
+
+// Allow pressing "Enter" to send a message
+chatInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage.click();
+  }
+});

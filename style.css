@@ -4,22 +4,28 @@ body {
   margin: 0;
   padding: 0;
   background-color: #EEEDEC;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
 
 /* Top Bar */
 .top-bar {
   background-color: #c96d6d;
   color: white;
-  padding: 10px 20px;
+  padding: 0.3125rem; /* 5px / 16px = 0.3125rem */
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
+  font-size: 1.5rem; /* 1.5rem = 1.5 * 16px = 24px */
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 100;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Full width */
+  z-index: 10; /* Ensure it's on top of other content */
+  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2); /* 2px / 16px = 0.125rem */
+  overflow: hidden;
 }
 
 .search-bar {
@@ -34,10 +40,36 @@ body {
   padding: 20px;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  position: fixed;
   top: 50px;
-  left: 0;
+  left: -300px;
   height: 100%;
+  transition: left 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #c96d6d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 /* Content Area */
@@ -61,8 +93,8 @@ body {
 }
 
 .status img {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
@@ -80,7 +112,11 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* User Cards */
+.news-item img {
+  width: 200px;
+  height: 200px;
+}
+
 .user-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -93,4 +129,11 @@ body {
   border-radius: 5px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #c96d6d;
+  color: white;
 }

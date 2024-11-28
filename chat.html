@@ -3,35 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat - Senior Next</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Senior Next - Chat System</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Senior Next</div>
-      <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="logout.html">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main class="chat-container">
-    <h1>Chat with Others</h1>
-    <div class="chat-box" id="chatBox">
-      <!-- Messages will be displayed here -->
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <div class="chat-header">
+      <h3>Chat Room</h3>
     </div>
-    <textarea id="messageInput" placeholder="Type a message..."></textarea>
-    <button id="sendMessageButton">Send</button>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Senior Next. All rights reserved.</p>
-  </footer>
+    <div class="chat-body" id="chatBody">
+      <!-- Messages will appear here -->
+    </div>
+    <div class="chat-footer">
+      <textarea id="chatInput" placeholder="Type a message..."></textarea>
+      <button id="sendMessage">Send</button>
+    </div>
+  </div>
 
   <script src="javascript.js"></script>
 </body>
