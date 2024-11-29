@@ -50,6 +50,30 @@ window.addEventListener('touchmove', (event) => {
   touchStartY = touchCurrentY;
 });
 
+// Sidebar toggle
+const sidebar = document.querySelector('.sidebar');
+document.querySelector('.menu-icon')?.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+
+// Adjust container margin dynamically
+window.addEventListener('resize', () => {
+  const mainContainer = document.querySelector('.main-container');
+  mainContainer.style.marginLeft = sidebar.classList.contains('open') ? '20rem' : '0';
+});
+
+// Search functionality
+const searchBar = document.querySelector('.search-bar');
+const userCards = document.querySelectorAll('.user-card');
+
+searchBar?.addEventListener('input', () => {
+  const searchTerm = searchBar.value.toLowerCase();
+  userCards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(searchTerm) ? '' : 'none';
+  });
+});
+
 // Function to save data to the browser's local storage
 function saveToLocalStorage(key, value) {
   // Convert the value to a string and store it with a specific key
