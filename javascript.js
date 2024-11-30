@@ -1,92 +1,135 @@
-// Sidebar toggle
-const sidebar = document.getElementById('sidebar');
-document.getElementById('openSidebar').addEventListener('click', () => {
-  sidebar.style.left = '0';
-});
-document.getElementById('closeSidebar').addEventListener('click', () => {
-  sidebar.style.left = '-300px';
-});
+document.addEventListener('DOMContentLoaded', () => {
+// Cache DOM elements for reuse
+const realNewsBtn = document.getElementById('realNewsBtn');
+const updatesBtn = document.getElementById('updatesBtn');
+const newsContainer = document.getElementById('newsContainer');
+const slides = document.querySelectorAll('.carousel-item');
+const statusCarousel = document.querySelector('.status-carousel');
 
-// Status Update
-const statusInput = document.getElementById('statusInput');
-const postStatus = document.getElementById('postStatus');
-const statusList = document.getElementById('statusList');
+// Variable to track the current active slide
+let currentSlide = 0;
 
-postStatus.addEventListener('click', () => {
-  const statusText = statusInput.value.trim();
-  if (statusText) {
-    const li = document.createElement('li');
-    li.textContent = statusText;
-    statusList.prepend(li);
-    statusInput.value = '';
-  }
-});
-
-// Generate Profiles
-const profileList = document.querySelector('.profile-list');
-const profiles = Array.from({ length: 12 }, (_, i) => ({
-  name: `User ${i + 1}`,
-  img: `https://via.placeholder.com/150?text=User+${i + 1}`,
-}));
-
-// Carousel Functionality
-document.querySelectorAll('.status-carousel, .news-carousel').forEach(carousel => {
-  carousel.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    carousel.scrollLeft += e.deltaY;
+// Carousel navigation: Move to next or previous slide
+function showSlide(index) {
+  const reviews = document.querySelectorAll(".review");
+  reviews.forEach((review, i) => {
+    review.style.transform = `translateX(${(i - index) * 100}%)`;
   });
-});
-
-profiles.forEach(({ name, img }) => {
-  const card = document.createElement('div');
-  card.className = 'profile-card';
-  card.innerHTML = `<img src="${img}" alt="${name}"><p>${name}</p>`;
-  card.addEventListener('click', () => alert(`Viewing ${name}'s Profile`));
-  profileList.appendChild(card);
-});
-
-const chatInput = document.getElementById('chatInput');
-const sendMessage = document.getElementById('sendMessage');
-const chatBody = document.getElementById('chatBody');
-
-// Simulated bot responses
-const botResponses = [
-  "Hello! How can I help you today?",
-  "That's interesting! Tell me more.",
-  "I'm here to chat with you 😊.",
-  "What's on your mind?",
-  "Have a great day!"
-];
-
-// Add a message to the chat
-function addMessage(text, sender = 'sent') {
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `message ${sender}`;
-  messageDiv.textContent = text;
-  chatBody.appendChild(messageDiv);
-  chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the latest message
 }
 
-// Simulate bot response
-function botReply() {
-  const response = botResponses[Math.floor(Math.random() * botResponses.length)];
-  setTimeout(() => addMessage(response, 'received'), 1000);
+function nextSlide() {
+  const reviews = document.querySelectorAll(".review");
+  currentSlide = (currentSlide + 1) % reviews.length;
+  showSlide(currentSlide);
 }
 
-// Send button functionality
-sendMessage.addEventListener('click', () => {
-  const messageText = chatInput.value.trim();
-  if (messageText) {
-    addMessage(messageText, 'sent');
-    chatInput.value = '';
-    botReply();
-  }
+function prevSlide() {
+  const reviews = document.querySelectorAll(".review");
+  currentSlide = (currentSlide - 1 + reviews.length) % reviews.length;
+  showSlide(currentSlide);
+}
+
+// Initialise carousel
+showSlide(currentSlide);
+
+// Auto-scroll setup for the status carousel
+let autoScrollInterval;
+
+// Function to start auto-scrolling the status carousel
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    statusCarousel.scrollBy({ left: 1, behavior: 'smooth' });
+  }, 20);
+}
+
+// Stop auto-scrolling when the mouse enters the carousel
+statusCarousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+
+// Resume auto-scrolling when the mouse leaves the carousel
+statusCarousel.addEventListener('mouseleave', startAutoScroll);
+
+// Initialise auto-scrolling when the page loads
+startAutoScroll();
+
+// Set the initial active slide when the page loads
+slides[currentSlide]?.classList.add('active');
+
+// Ethnicity Filter
+
+// Load real news when the "Real News" button is clicked
+realNewsBtn?.addEventListener('click', () => {
+  loadRealNews(); // Fetch and display real news
+  toggleActive(realNewsBtn, updatesBtn); // Set the clicked button as active
 });
 
-// Allow pressing "Enter" to send a message
-chatInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage.click();
+// Load updates when the "Updates" button is clicked
+updatesBtn?.addEventListener('click', () => {
+  loadUpdates(); // Display updates
+  toggleActive(updatesBtn, realNewsBtn); // Set the clicked button as active
+});
+
+// Function to load real news from the New York Times RSS feed
+async function loadRealNews() {
+  // Display loading message while fetching news
+  newsContainer.innerHTML = '<p>Loading...</p>';
+  
+  try {
+    // Fetch RSS feed from New York Times
+    const response = await fetch('https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml');
+    const text = await response.text();
+
+    // Parse the fetched RSS XML content
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, 'text/xml');
+    const items = xml.querySelectorAll('item'); // Extract all 'item' elements from the feed
+
+    // Clear the loading message
+    newsContainer.innerHTML = '';
+
+    // Loop through each news item and display it
+    items.forEach(item => {
+      const title = item.querySelector('title')?.textContent || 'No title'; // Get the title of the news item
+      const link = item.querySelector('link')?.textContent || '#'; // Get the link to the full article
+
+      // Create a new news item element (without an image)
+      const newsItem = document.createElement('div');
+      newsItem.className = 'news-item';
+      newsItem.innerHTML = `
+        <a href="${link}" target="_blank">
+          <h4>${title}</h4>
+        </a>`;
+
+      // Append the news item to the container
+      newsContainer.appendChild(newsItem);
+    });
+  } catch (error) {
+    // Handle any errors that occur while fetching the news
+    console.error('Error fetching news:', error);
+    newsContainer.innerHTML = '<p>Unable to load news. Please try again later.</p>';
   }
+}
+
+// Function to load static updates (for example, community events)
+function loadUpdates() {
+  newsContainer.innerHTML = `
+    <div class="news-item">
+      <h4>Community Gathering 💬</h4>
+      <p>Join our monthly meet-up for fun activities!</p>
+    </div>
+    <div class="news-item">
+      <h4>New Classes 📚</h4>
+      <p>Sign up for exciting new workshops!</p>
+    </div>
+  `;
+}
+
+// Function to toggle the active class between the buttons
+function toggleActive(activeBtn, inactiveBtn) {
+  // Add 'active' class to the clicked button and remove it from the other
+  activeBtn?.classList.add('active');
+  inactiveBtn?.classList.remove('active');
+}
+
+// Load real news initially when the page loads
+loadRealNews();
 });
