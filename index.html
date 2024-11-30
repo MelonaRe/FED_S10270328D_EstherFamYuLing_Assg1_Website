@@ -23,7 +23,7 @@
       <h4>John Doe</h4>
       <p>Age: 65 | Location: New York</p>
       <button id="closeSidebar">Close</button>
-      <a href="landing.html">Logout</a>
+      <button id="logout" onclick="window.location.href='landing.html'">Logout</button>
     </div>
   </div>
 
@@ -34,67 +34,64 @@
       <button class="nav-btn" onclick="window.location.href='index.html'">Home</button>
       <button class="nav-btn" onclick="window.location.href='match.html'">Match</button>
       <button class="nav-btn" onclick="window.location.href='chat.html'">Chat</button>
-      <button class="nav-btn" onclick="window.location.href='profile.html'">Profile</button>
     </div>
-  
-    <!-- Content Area -->
-    <div class="content">
+
       <!-- Status Feed -->
       <section class="status-feed">
         <h2>Status Feed</h2>
-        <div class="status-carousel">
-          <div class="status">
-            <img src="Senior Images/WhatsApp Image 2024-07-06 at 6.09.53 PM.jpeg" alt="Status">
+          <div id="statusCarousel" class="status-carousel">
+            <div class="status" data-name="Cat Lady 2000">
+              <img src="Senior Images/Cat Lady 2000.jpeg" alt="status" />
+            </div>
+            <div class="status" data-name="Chad Jr.">
+              <img src="Senior Images/Chad Jr..png" alt="status" />
+            </div>
+            <div class="status" data-name="Esther Jones">
+              <img src="Senior Images/Esther Jones.png" alt="status" />
+            </div>
+            <div class="status" data-name="Forne Taine">
+              <img src="Senior Images/Forne Taine.png" alt="status" />
+            </div>
+            <div class="status" data-name="Forwea Lone">
+              <img src="Senior Images/Forwea Lone.png" alt="status" />
+            </div>
+            <div class="status" data-name="Harold Ralph">
+              <img src="Senior Images/Harold Ralph.png" alt="status" />
+            </div>
+            <div class="status" data-name="Jared Tote">
+              <img src="Senior Images/Jared Tote.png" alt="status" />
+            </div>
+            <div class="status" data-name="Jennifer Lopez">
+              <img src="Senior Images/Jennifer Lopez.png" alt="status" />
+            </div>
+            <div class="status" data-name="Jones To">
+              <img src="Senior Images/Jones To.png" alt="status" />
+            </div>
+            <div class="status" data-name="Drake Ke">
+              <img src="Senior Images/Drake Ke.png" alt="status" />
+            </div>
+            <div class="status" data-name="Alice Wonders">
+              <img src="Senior Images/Alice Wonders.png" alt="status" />
+            </div>
+            <div class="status" data-name="Lee Sung">
+              <img src="Senior Images/Lee Sung.png" alt="status" />
+            </div>
+            <div class="status" data-name="Mora X">
+              <img src="Senior Images/Mora X.png" alt="status" />
+            </div>
+            <div class="status" data-name="Nevah Lone">
+              <img src="Senior Images/Nevah Lone.png" alt="status" />
+            </div>
+            <div class="status" data-name="Rea Ter Agen">
+              <img src="Senior Images/Rea Ter Agen.png" alt="status" />
+            </div>
+            <div class="status" data-name="Theo Jorn">
+              <img src="Senior Images/Theo Jorn.png" alt="status" />
+            </div>
+            <div class="status" data-name="Alice Wonders">
+              <img src="Senior Images/Alice Wonders.png" alt="status" />
+            </div>
           </div>
-          <div class="status">
-            <img src="Senior Images/Chad Jr..png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Esther Jones.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Forne Taine.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Forwea Lone.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Harold Ralph.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Jared Tote.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Jennifer Lopez.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Jones To.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Land.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Land2.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Lee Sung.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Mora X.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Nevah Lone.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Rea Ter Agen.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Theo Jorn.png" alt="Status">
-          </div>
-          <div class="status">
-            <img src="Senior Images/Untitled design(23).png" alt="Status">
-          </div>
-        </div>
       </section>
 
       <!-- News Section -->
@@ -106,156 +103,23 @@
         </div>
         <div id="newsContainer" class="news-carousel"></div>
       </section>
-    </div>
 
     <!-- Filters -->
     <div class="filter-container">
-    <label for="Filter">Filter by:</label>
-    <select id="Filter">
-      <option value="Select">Select</option>
-      <option value="Caucasian">Caucasian</option>
-      <option value="Asian">Asian</option>
-      <option value="African">African</option>
-      <option value="Ultraman">Ultraman</option>
-      <option value="Nearest">Nearest to me</option>
-    </select>
+      <label for="Filter">Filter by:</label>
+      <select id="Filter">
+        <option value="All">All</option>
+        <option value="Caucasian">Caucasian</option>
+        <option value="Asian">Asian</option>
+        <option value="African">African</option>
+      </select>
     </div>
-    
+
     <!-- User Cards -->
     <section class="user-cards-section">
-      <h2>Meet your new connections~</h2>
-      <div class="user-cards">
-        <!-- Lee Sung comes first -->
-        <div class="user-card" data-ethnicity="Korean">
-          <img src="Senior Images/Lee Sung.png" alt="Senior">
-          <h4>Lee Sung</h4>
-          <p>Age: 75 | Location: Seoul</p>
-          <p>Ethnicity: Korean</p>
-          <p>Personality: Humble</p>
-          <p>Gender: Male</p>
-        </div>
-        <!-- Jared Tote comes second -->
-        <div class="user-card" data-ethnicity="African">
-          <img src="Senior Images/Jared Tote.png" alt="Senior">
-          <h4>Jared Tote</h4>
-          <p>Age: 65 | Location: Chicago</p>
-          <p>Ethnicity: African</p>
-          <p>Personality: Friendly</p>
-          <p>Gender: Male</p>
-        </div>
-        <!-- The rest of the user cards -->
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Esther Jones.png" alt="Senior">
-          <h4>Esther Jones</h4>
-          <p>Age: 72 | Location: London</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Enthusiastic</p>
-          <p>Gender: Female</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Forwea Lone.png" alt="Senior">
-          <h4>Forwea Lone</h4>
-          <p>Age: 68 | Location: Sydney</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Reserved</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Chad Jr..png" alt="Senior">
-          <h4>Chad Jr.</h4>
-          <p>Age: 70 | Location: New York</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Outgoing</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Forne Taine.png" alt="Senior">
-          <h4>Forne Taine</h4>
-          <p>Age: 74 | Location: Paris</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Creative</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Harold Ralph.png" alt="Senior">
-          <h4>Harold Ralph</h4>
-          <p>Age: 78 | Location: Florida</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Calm</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Latino">
-          <img src="Senior Images/Jennifer Lopez.png" alt="Senior">
-          <h4>Jennifer Lopez</h4>
-          <p>Age: 66 | Location: Miami</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Charismatic</p>
-          <p>Gender: Female</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Jones To.png" alt="Senior">
-          <h4>Jones To</h4>
-          <p>Age: 69 | Location: California</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Adventurous</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="African American">
-          <img src="Senior Images/Land.png" alt="Senior">
-          <h4>Land</h4>
-          <p>Age: 68 | Location: London</p>
-          <p>Ethnicity: African American</p>
-          <p>Personality: Thoughtful</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Land2.png" alt="Senior">
-          <h4>Land 2</h4>
-          <p>Age: 72 | Location: New York</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Sociable</p>
-          <p>Gender: Female</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Mora X.png" alt="Senior">
-          <h4>Mora X</h4>
-          <p>Age: 70 | Location: Miami</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Energetic</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Asian">
-          <img src="Senior Images/Nevah Lone.png" alt="Senior">
-          <h4>Nevah Lone</h4>
-          <p>Age: 74 | Location: Sydney</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Reflective</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Rea Ter Agen.png" alt="Senior">
-          <h4>Rea Ter Agen</h4>
-          <p>Age: 78 | Location: California</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Optimistic</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="European">
-          <img src="Senior Images/Theo Jorn.png" alt="Senior">
-          <h4>Theo Jorn</h4>
-          <p>Age: 69 | Location: Paris</p>
-          <p>Ethnicity: Asian</p>
-          <p>Personality: Serious</p>
-          <p>Gender: Male</p>
-        </div>
-        <div class="user-card" data-ethnicity="Caucasian">
-          <img src="Senior Images/Untitled design(23).png" alt="Senior">
-          <h4>Beatrice Tea</h4>
-          <p>Age: 67 | Location: Texas</p>
-          <p>Ethnicity: Caucasian</p>
-          <p>Personality: Humorous</p>
-          <p>Gender: Female</p>
-        </div>
+      <div class="section-title"><h2>Meet Seniors</h2></div>
+      <div id="userCards" class="user-cards">
+        <!-- User cards will dynamically load here -->
       </div>
     </section>
   </div>

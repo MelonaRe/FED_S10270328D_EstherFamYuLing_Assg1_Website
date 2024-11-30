@@ -5,41 +5,18 @@ const updatesBtn = document.getElementById('updatesBtn');
 const newsContainer = document.getElementById('newsContainer');
 const slides = document.querySelectorAll('.carousel-item');
 const statusCarousel = document.querySelector('.status-carousel');
-
-// Variable to track the current active slide
-let currentSlide = 0;
-
-// Carousel navigation: Move to next or previous slide
-function showSlide(index) {
-  const reviews = document.querySelectorAll(".review");
-  reviews.forEach((review, i) => {
-    review.style.transform = `translateX(${(i - index) * 100}%)`;
-  });
-}
-
-function nextSlide() {
-  const reviews = document.querySelectorAll(".review");
-  currentSlide = (currentSlide + 1) % reviews.length;
-  showSlide(currentSlide);
-}
-
-function prevSlide() {
-  const reviews = document.querySelectorAll(".review");
-  currentSlide = (currentSlide - 1 + reviews.length) % reviews.length;
-  showSlide(currentSlide);
-}
-
-// Initialise carousel
-showSlide(currentSlide);
+const statuses = document.querySelectorAll('.status');
 
 // Auto-scroll setup for the status carousel
 let autoScrollInterval;
 
 // Function to start auto-scrolling the status carousel
 function startAutoScroll() {
+  // Scroll the carousel 1 pixel to the left, with a smooth scrolling effect
   autoScrollInterval = setInterval(() => {
-    statusCarousel.scrollBy({ left: 1, behavior: 'smooth' });
-  }, 20);
+    // Scroll the carousel 3 pixels! to the left, with a smooth scrolling effect
+    statusCarousel.scrollBy({ left: 3, behavior: 'smooth' });
+  }, 20); // 20 milliseconds interval
 }
 
 // Stop auto-scrolling when the mouse enters the carousel
@@ -51,10 +28,15 @@ statusCarousel.addEventListener('mouseleave', startAutoScroll);
 // Initialise auto-scrolling when the page loads
 startAutoScroll();
 
-// Set the initial active slide when the page loads
-slides[currentSlide]?.classList.add('active');
+// Pop-up functionality, fast pop-up
+document.querySelectorAll('.status').forEach((statusElement) => {
+  statusElement.addEventListener('click', () => {
+    const statusName = statusElement.getAttribute('data-name');  // Get the name from the data-name attribute
 
-// Ethnicity Filter
+    // Display the pop-up with the status name
+    alert(`This is ${statusName}'s status! Say hi!`);
+  });
+});
 
 // Load real news when the "Real News" button is clicked
 realNewsBtn?.addEventListener('click', () => {
