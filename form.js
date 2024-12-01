@@ -15,7 +15,7 @@ const nameInput = document.getElementById('name'); // Name input field
 const passwordInput = document.getElementById('password'); // Password input field
 const errorMessage = document.getElementById('error-message'); // Error message element for validation feedback
 
-// Step Tracker
+// Step Tracker to track current step number
 const steps = document.querySelectorAll('.form-step'); // Get all form steps to count
 let currentStep = 0;
 
@@ -63,7 +63,8 @@ nextBtn.addEventListener('click', () => {
     errorMessage.style.display = 'none';
     if (currentStep === steps.length - 1) {
       completeSignUp();
-      window.location.href = "index.html"; // Redirect to index.page on the last step
+      alert("Sign-Up Successful!");
+      window.location.href = "login.html"; // Redirect to login page on the last step
     } else {
       currentStep++; // Move to next step
       initialiseForm(); // Update the form to display the next step
@@ -153,7 +154,7 @@ function handleGenderSelection() {
   initialiseForm(); // Update the form display
 }
 
-// Complete the signup process and display user profile
+// Complete the signup process and display user profile. Complete signup using for validation!
 function completeSignUp() {
   // Extract data from the form inputs to complete the sign-up
   const name = nameInput.value;

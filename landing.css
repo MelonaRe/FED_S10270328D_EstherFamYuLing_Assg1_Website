@@ -184,7 +184,7 @@ blockquote cite {
   display: block;
   text-align: right;
   font-weight: bold;
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 blockquote p {

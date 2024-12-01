@@ -78,18 +78,6 @@ window.addEventListener('resize', adjustMainContainerMargin);
 // Ensure the margin is correct on initial load
 adjustMainContainerMargin();
 
-// Function to save data to the browser's local storage
-function saveToLocalStorage(key, value) {
-  // Convert value to a string and store it in local storage under the given key
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
-// Function to get data from the browser's local storage
-function getFromLocalStorage(key) {
-  // Retrieve and parse the data from local storage
-  return JSON.parse(localStorage.getItem(key));
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to the filter dropdown, user cards container, and search bar
   const filterDropdown = document.getElementById('Filter');
@@ -101,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Lee Sung', age: 75, location: 'Seoul', ethnicity: 'Asian', personality: 'Humble', gender: 'Male', image: 'Senior Images/Lee Sung.png' },
     { name: 'Jared Tote', age: 65, location: 'Chicago', ethnicity: 'African', personality: 'Friendly', gender: 'Male', image: 'Senior Images/Jared Tote.png' },
     { name: 'Esther Jones', age: 72, location: 'London', ethnicity: 'Caucasian', personality: 'Enthusiastic', gender: 'Female', image: 'Senior Images/Esther Jones.png' },
-    { name: 'Forwea Lone', age: 68, location: 'Sydney', ethnicity: 'Caucasian', personality: 'Reserved', gender: 'Male', image: 'Senior Images/Forwea Lone.png' },
+    { name: 'Forwea Lone', age: 68, location: 'Sydney', ethnicity: 'Caucasian', personality: 'Reserved', gender: 'Non-Binary', image: 'Senior Images/Forwea Lone.png' },
     { name: 'Chad Jr.', age: 70, location: 'New York', ethnicity: 'Caucasian', personality: 'Outgoing', gender: 'Male', image: 'Senior Images/Chad Jr..png' },
     { name: 'Forne Taine', age: 74, location: 'Paris', ethnicity: 'Caucasian', personality: 'Creative', gender: 'Male', image: 'Senior Images/Forne Taine.png' },
     { name: 'Harold Ralph', age: 78, location: 'Florida', ethnicity: 'Caucasian', personality: 'Calm', gender: 'Male', image: 'Senior Images/Harold Ralph.png' },
@@ -115,21 +103,24 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Theo Jorn', age: 69, location: 'Paris', ethnicity: 'Asian', personality: 'Serious', gender: 'Male', image: 'Senior Images/Theo Jorn.png' },
     { name: 'Beatrice Tea', age: 67, location: 'Texas', ethnicity: 'Caucasian', personality: 'Humorous', gender: 'Female', image: 'Senior Images/Beatrice Tea.png' },
   ];
-
+  
   // Function to render user cards based on filter and search query
   function renderUserCards(filter = 'All', query = '') {
     userCardsContainer.innerHTML = ''; // Clear current content
 
-    // Filter users based on ethnicity (filter) and search query (query)
-    const filteredUsers = users.filter(user => {
-      // Match based on filter (ethnicity)
-      const matchEthnicity = filter === 'All' || user.ethnicity === filter;
-      // Match based on search query (name, age, personality)
-      const matchSearch = query === '' || user.name.toLowerCase().includes(query.toLowerCase()) ||
-                          user.age.toString().includes(query) ||
-                          user.personality.toLowerCase().includes(query.toLowerCase());
-      return matchEthnicity && matchSearch;
-    });
+  // Filter users based on ethnicity (filter) and search query (query)
+  const filteredUsers = users.filter(user => {
+    // Match based on filter (ethnicity)
+    const matchEthnicity = filter === 'All' || user.ethnicity === filter;
+    // Match based on search query (name, age, personality, gender)
+    const matchSearch = query === '' || user.name.toLowerCase().includes(query.toLowerCase()) ||
+                        user.age.toString().includes(query) ||
+                        user.personality.toLowerCase().includes(query.toLowerCase()) ||
+                        //Too diffiult to search since there's male in female so case-sensitivee
+                        user.gender.toString().includes(query);
+    return matchEthnicity && matchSearch;
+  });
+
 
     // Render user cards for each filtered user
     filteredUsers.forEach(user => {
@@ -139,9 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${user.image}" alt="${user.name}">
         <h4>${user.name}</h4>
         <p>Age: ${user.age} | Location: ${user.location}</p>
+        <p>Gender: ${user.gender}</p>
         <p>Ethnicity: ${user.ethnicity}</p>
         <p>Personality: ${user.personality}</p>
-        <p>Gender: ${user.gender}</p>
         <button onclick="viewProfile('${user.name}')">View Profile</button>
       `;
       userCardsContainer.appendChild(userCard);
