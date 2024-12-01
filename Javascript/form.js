@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return emailRegex.test(email); // returns true if email matches the regex pattern
   }
 
-  // // Form Validation
+  // // Form Validation redundant codes
   // function validateForm() {
   //   const emailValid = validateEmail(emailInput.value); // Validate email format
   //   const ageValid = parseInt(ageInput.value) >= 40; // Validate that age is 40 or above
