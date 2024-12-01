@@ -207,6 +207,10 @@ https://www.figma.com/design/WeZYpXjKUZARxdVPKEoCIM/FED_S10270328D_EstherFamYuLi
    - **Step 2:** Ensure that the layout adjusts properly for screen sizes, ensuring readability and ease of use.
    - **Step 3:** Check for consistency in font sizes, image scaling, and content alignment across devices.
    - **Step 4:** Test all interactive features (buttons, sliders, filters, etc.) to ensure they work smoothly on mobile, tablet, and desktop.
+
+   10. **Logout**
+   - **Step 1:** Open slidebar, there is a logout button.
+   - **Step 2:** Click the logout button. Ensure it redirects you to the landing page.
    
    ---
 
