@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const realNewsBtn = document.getElementById('realNewsBtn');
 const updatesBtn = document.getElementById('updatesBtn');
 const newsContainer = document.getElementById('newsContainer');
-const slides = document.querySelectorAll('.carousel-item');
 const statusCarousel = document.querySelector('.status-carousel');
-const statuses = document.querySelectorAll('.status');
 
 // Auto-scroll setup for the status carousel
 let autoScrollInterval;

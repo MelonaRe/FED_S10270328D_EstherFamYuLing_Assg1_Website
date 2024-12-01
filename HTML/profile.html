@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Senior Next - Find Your Match!">
+  <title>Senior Next - Profile</title>
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link href="../CSS/style.css" rel="stylesheet" type="text/css"/>
+  <link href="../CSS/profile.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <h3>Senior Next 🤍</h3>
+  </header>
+
+  <!-- Match Popup -->
+  <div id="match-message">You Matched! 💖</div>
+  <div id="reject-message">Not a Match</div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <div class="profile-container">
+      <!-- Navigation Bar -->
+      <div class="nav-bar">
+        <button class="nav-btn" onclick="window.location.href='../index.html'">Home</button>
+        <button class="nav-btn">Match</button>
+        <button class="nav-btn">Chat</button>
+      </div>
+      <!--Senior Cardd-->
+      <section class="senior-card">
+        <!-- Profile Image -->
+        <img src="../Senior Images/Lee Sung.png" alt="Profile of Lee Sung" class="senior-image">
+        <h2>Lee Sung</h2>
+        <h3 class="age-location">Age: 75 | Location: Seoul</h3>
+
+        <!-- Interaction Emojis -->
+        <div class="emojis">
+          <button class="emoji-btn" aria-label="Dislike" onclick="reject()">
+            👎
+          </button>
+          <button class="emoji-btn" aria-label="Favourite" onclick="toggleFavorite()">
+            ⭐
+          </button>
+          <button class="emoji-btn" aria-label="Like" onclick="like()">
+            ❤️
+          </button>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="senior-info">
+          <div class="info-box">
+            <h3>Gender</h3>
+            <p>Male</p>
+          </div>
+          <div class="info-box">
+            <h3>About Me</h3>
+            <p>I'm a simple man with a big heart for animals. I love spending my days at home with my cats and taking care of my beloved strays. Life is all about love and kindness, and I want to share that with someone special.</p>
+          </div>
+          <div class="info-box">
+            <h3>Looking For</h3>
+            <p>A kind, sweet, and loving person to care for my 11 strays alongside me.</p>
+          </div>
+          <div class="info-box">
+            <h3>Ethnicity</h3>
+            <p>Asian</p>
+          </div>
+          <div class="info-box">
+            <h3>Personality</h3>
+            <p>Humble, Caring, Patient, and Kind</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Senior Next. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Match message pop-up
+    function like() {
+      const matchMessage = document.getElementById('match-message');
+      matchMessage.style.display = 'block'; // Show match message
+      setTimeout(() => {
+        matchMessage.style.display = 'none'; // Hide after 2 seconds
+      }, 2000);
+    }
+
+    // Toggle favorite button
+    function toggleFavorite() {
+      const favoriteButton = document.querySelector('.emoji-btn[aria-label="Favourite"]');
+      favoriteButton.classList.toggle('favorited'); // Toggle gold color when favorited
+    }
+
+    // Reject message pop-up
+    function reject() {
+      const rejectMessage = document.getElementById('reject-message');
+      rejectMessage.style.display = 'block'; // Show reject message
+      setTimeout(() => {
+        rejectMessage.style.display = 'none'; // Hide after 2 seconds
+      }, 2000);
+    }
+  </script>
+  <script src="../Javascript/global.js"></script>
+</body>
+</html>
